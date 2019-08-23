@@ -60,7 +60,8 @@
 
 (define (sqrt x)
   (sqrt-iter 1.0 x))
-
+         
+         ;output
 (sqrt 0) ;0.03125
 (sqrt 1) ;1.0
 (sqrt 9) ;3.00009155413138
