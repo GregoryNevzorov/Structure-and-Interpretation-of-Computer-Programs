@@ -31,4 +31,4 @@
 
 (sqrt 9) ; out of memory
 ; Причина в аппликативном порядке вычисления - сначала вычисляются аргументы, затем применяется процедура. Из-за этого возникает бесконечная рекурсия.
-; ; The reason is applicative order of evaluation - the arguments are evaluated first, then apply the procedure. Because of this, there is an infinite recursion.
+; The reason is applicative order of evaluation - the arguments are evaluated first, then apply the procedure. Because of this, there is an infinite recursion.
