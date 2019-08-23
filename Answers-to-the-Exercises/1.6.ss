@@ -15,7 +15,7 @@
   (* x x))
 
 (define (sqrt-iter guess x)
-  (new-if (good-enough? guess x)
+  (new-if (good-enough? guess x) ;!
           guess
           (sqrt-iter (improve guess x)
                      x)))
@@ -28,3 +28,5 @@
 
 (define (sqrt x)
   (sqrt-iter 1.0 x))
+
+(sqrt 9) ; out of memory
