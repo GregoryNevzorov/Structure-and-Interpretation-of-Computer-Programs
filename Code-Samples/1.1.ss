@@ -104,3 +104,27 @@
         guess
         (sqrt-iter (improve guess))))
   (sqrt-iter 1.0))
+;Альтернативный вариант - все расчеты выполняются в теле процедур average, а не передаються частично в её, как раньше.
+(define (sqrt x)
+  (define (good-enough? guess)
+    (< (abs (- (square guess) x)) 0.001))
+  (define (average y)
+    (/ (+ (/ x y) y) 2))
+  (define (improve guess)
+    (average guess))
+  (define (sqrt-iter guess)
+    (if (good-enough? guess)
+        guess
+        (sqrt-iter (improve guess))))
+  (sqrt-iter 1.0))
+;в таком случае одна из процедур теряет смысл, объединим их
+(define (sqrt x)
+  (define (good-enough? guess)
+    (< (abs (- (square guess) x)) 0.001))
+  (define (improve guess)
+    (/ (+ (/ x guess) guess) 2))
+  (define (sqrt-iter guess)
+    (if (good-enough? guess)
+        guess
+        (sqrt-iter (improve guess))))
+  (sqrt-iter 1.0))
