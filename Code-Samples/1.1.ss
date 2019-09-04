@@ -68,3 +68,39 @@
 (sqrt (+ 100 37)) ;11.704699917758145
 (sqrt (+ (sqrt 2)(sqrt 3))) ;1.7739279023207892
 (square (sqrt 1000)) ;1000.000369924366
+
+;1.1.8
+;Внутренние определения и блочная структура
+(define (abs x)
+  (if (> x 0)
+      x
+      (- x)))
+(define (square x)
+  (* x x))
+;sqrt-iter, average, improve, good-enough? - подпроцедуры локальны в теле процедуры sqrt
+(define (sqrt x)
+  (define (good-enough? guess x)
+    (< (abs (- (square guess) x)) 0.001))
+  (define (average x y)
+    (/ (+ x y) 2))
+  (define (improve guess x)
+    (average guess (/ x guess)))
+  (define (sqrt-iter guess x)
+    (if (good-enough? guess x)
+        guess
+        (sqrt-iter (improve guess x) x)))
+  (sqrt-iter 1.0 x))
+;"x" свободная переменная для внутренних подпроцедур sqrt, её не обязательно явно передавать в каждую подпроцедуру
+;но её нужно явно передать в процедуру average, поскольку improve передает не "x", а выражение с ним
+(define (sqrt x)
+  (define (good-enough? guess)
+    (< (abs (- (square guess) x)) 0.001))
+  (define (average x y)
+    (/ (+ x y) 2))
+  (define (improve guess)
+    (average guess (/ x guess)))
+  (define (sqrt-iter guess)
+    (if (good-enough? guess)
+        guess
+        (sqrt-iter (improve guess))))
+  (sqrt-iter 1.0))
