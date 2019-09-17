@@ -1,5 +1,5 @@
 #lang racket
-; 1.2
+; 1.2.1
 ;Вычисление факториала.
 ;Рекурсивный процесс, рекурсивная процедура:
 (define (factorialR n)
@@ -20,3 +20,15 @@
                  max-count)))
 
 (factorialI 6) ; 720
+;Итеративный процесс, рекурсивная процедура:
+;Блочная структура
+(define (factorialB n)
+  (define (fact-iter product counter max-count)
+    (if (> counter max-count)
+        product
+        (fact-iter (* counter product)
+                   (+ counter 1)
+                   max-count)))
+(fact-iter 1 1 n))
+
+(factorialB 6) ; 720
