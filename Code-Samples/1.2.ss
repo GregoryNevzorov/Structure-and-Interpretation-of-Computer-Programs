@@ -18,4 +18,5 @@
       (fact-iter (* counter product)
                  (+ counter 1)
                  max-count)))
+
 (factorialI 6) ; 720
