@@ -53,3 +53,27 @@
       (fib-iter (+ a b) a (- count 1))))
 
 (fib2 15) ; 610
+
+; Рекурсивный алгоритм подсчета количества способов размена какой-либо суммы денег.
+; Количество_способов(amount, kinds-of-coins) = Количество_способов(amount, kinds-of-coins - 1) + Количество_способов(amount - d, kinds-of-coins),
+; где d - номинал монет первого типа
+(define (count-change amount)
+  (cc amount 5)) ; amount - некая сумма денег
+
+(define (cc amount kinds-of-coins) ; kinds-of-coins - количество типов монет
+  (cond ((= amount 0) 1)
+        ((or (< amount 0) (= kinds-of-coins 0)) 0)
+        (else (+ (cc amount
+                     (- kinds-of-coins 1))
+                 (cc (- amount
+                        (first-denomination kinds-of-coins))
+                     kinds-of-coins)))))
+
+(define (first-denomination kinds-of-coins) ; -- номинал монет
+  (cond ((= kinds-of-coins 1) 1)
+        ((= kinds-of-coins 2) 5)
+        ((= kinds-of-coins 3) 10)
+        ((= kinds-of-coins 4) 25)
+        ((= kinds-of-coins 5) 50)))
+
+(count-change 100) ; 292 способа
