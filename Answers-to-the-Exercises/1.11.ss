@@ -11,11 +11,11 @@
 
 ; Итеративное определение
 (define (function n)
-  (function-iter n 0 1 2 n))
+  (function-iter 2 1 0 n))
 
-(define (function-iter n x y z answer)
+(define (function-iter x y z n)
   (if (< n 3)
-    answer
-    (function-iter (- n 1) y z (+ x y z) (+ x y z))))
+    (if (= x 2) n x)
+    (function-iter (+ x y z) x y (- n 1))))
 
 (function 5) ; 11
