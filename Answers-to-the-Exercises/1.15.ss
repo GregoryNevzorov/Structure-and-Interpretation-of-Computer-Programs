@@ -11,5 +11,5 @@
 
 (sine 12.15) ; func(p) - 5 calls
 
-; memory (+-) - a / 3.
-; steps (+-) - a / 3.
+; memory = log3(a) + inaccuracy.
+; steps = log3(a) + inaccuracy.
