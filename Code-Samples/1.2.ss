@@ -97,9 +97,22 @@
         (expt-iter b
                    (- counter 1)
                    (* b product))))
+;Ускорение на чётных показателях степени. (log2(n)) - памяти; (log2(n)) - шагов.
+(define (square x)
+  (* x x))
+
+(define (even? x)
+  (= (remainder x 2) 0))
+
+(define (exptF b n)
+  (cond ((= n 0) 1)
+        ((even? n) (square (exptF b (/ n 2))))
+        (else (* b (exptF b (- n 1))))))
 
 (exptR 3 3) ;27
 (exptI 3 3) ;27
+(exptF 3 3) ;27
 
 (exptR 2 1) ;2
 (exptI 2 1) ;2
+(exptF 2 1) ;2
