@@ -18,8 +18,8 @@
 
 (define (even? x)
   (if (= (remainder x 2) 0)
-      true
-      false))
+      #t
+      #f))
 
 ;fast f (log2(b)) - по памяти; (log2(b)) - по шагам.
 (define (fast a b)
