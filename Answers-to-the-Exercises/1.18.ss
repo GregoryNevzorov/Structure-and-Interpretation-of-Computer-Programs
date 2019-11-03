@@ -14,7 +14,7 @@
 ; A x B x N.
 (define (main a b)
   (define (fast a b n)
-    (cond ((or (= b 0) (= a 0)) n)
+    (cond ((or (= b 0) (= a 0)) n) ; optimization.
           ((even? b) (fast (double a) (halve b) n))
           (else (fast a (- b 1) (+ n a)))))
   (fast a b 0))
